@@ -550,8 +550,16 @@ config MONTANA_DTB
 	default n
 	bool "Montana DTBs"
 	help
-	  Only include Montana specific DTBs to limit the number that
+	  Only include Hannah specific DTBs to limit the number that
 	  get built during kernel compilation.
+
+config HANNAH_DTB
+        depends on ARCH_QCOM
+        default n
+        bool "Hannah DTBs"
+        help
+          Only include Montana specific DTBs to limit the number that
+          get built during kernel compilation.
 
 config QTI_RPMH_API
 	bool "QTI RPMH (h/w accelerators) Communication API"

@@ -137,7 +137,7 @@
 		interrupt-parent = <&tlmm>;
 		interrupts = <44 0x2002>;
 		cap_vdd-supply = <&pm8917_l10>;
-		cap_svdd-supply = <&pm8917_l5>;
+		cap_svdd-supply = <&pm8937_l5>;
 		gpios = <&tlmm 44 0x2008>; /* IRQ */
 		cap,use_channel = <0x0f>;
 		cap,use_channel_top = <0x00>;
@@ -242,12 +242,12 @@
 	};
 };
 
-&pm8917_l6 {
+&pm8937_l6 {
 	regulator-always-on;
 	regulator-boot-on;
 };
 
-&pm8917_l10 {
+&pm8937_l10 {
 	regulator-always-on;
 	regulator-boot-on;
 };
@@ -376,5 +376,11 @@
 
 &sdhc_2 {
 	cd-gpios = <&tlmm 67 0x0>;
+};
+
+&qcom_seecom {
+	/delete-property/ qcom,commonlib64-loaded-by-uefi;
+	qcom,appsbl-qseecom-support;
+
 };
 

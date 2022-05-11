@@ -43,12 +43,12 @@
 &reserved_memory {
 	ramoops_mem: ramoops_mem_region {
 		compatible = "ramoops";
-		ramoops-annotate-size = <MMI_ANNOTATE_SIZE>;
+		ramoops-annotate-size = <0x800>;
 		no-map;
 		console-size = <0x40000>;
-		pmsg-size = <RAMOOPS_PMSG_SIZE>;
+		pmsg-size = <0x40000>;
 		record-size = <0x3F800>;
-		reg = <0x0 0xae000000 0x0 0x80000>;
+		reg = <0x0 0xae000000 0x0 RAMOOPS_SIZE>;
 		label = "ramoops_mem";
 	};
 	tzlog_dump_mem: tzlog_dump_mem_region {
@@ -269,7 +269,7 @@
 		android,ramoops-buffer-size = <0x80000>;
 		android,ramoops-console-size = <RAMOOPS_CONSOLE_SIZE>;
 		android,ramoops-record-size = <RAMOOPS_RECORD_SIZE>;
-		android,ramoops-annotate-size = <MMI_ANNOTATE_SIZE>;
+		android,ramoops-annotate-size = <0x800>;
 		android,ramoops-dump-oops = <0x1>;
 
 		linux,contiguous-region = <&ramoops_mem>;
@@ -460,7 +460,7 @@
 	qcom,battery-data = <&mot_batterydata>;
 };
 &spmi_bus {
-	qcom,pm8953@0{
+	qcom,pm8937@0{
 		qcom,power-on@800{
 			/delete-property/ qcom,store-hard-reset-reason;
 		};
@@ -512,6 +512,7 @@
 	pinctrl-names = "default", "usbid-off";
 	pinctrl-0 = <&usbid_default>;
 	pinctrl-1 = <&usbid_off>;
+	extcon = <&qpnp_smbcharger>;
 };
 
 &rpm_bus {

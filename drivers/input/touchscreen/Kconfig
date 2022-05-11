@@ -1423,17 +1423,29 @@ config TOUCHSCREEN_GT9XX_v28
 
 source "drivers/input/touchscreen/gt9xx_v2.8/Kconfig"
 
-config TOUCHSCREEN_HIMAX_CHIPSET
-	bool "Himax touchpanel CHIPSET"
+config TOUCHSCREEN_HIMAX_MMI
+	bool "Himax MMI touchpanel"
 	depends on I2C
 	help
-	  Say Y here if you have a Himax CHIPSET touchscreen.
+	  Say Y here if you have a Himax MMI touchscreen.
 	  HIMAX controllers are multi touch controllers which can
 	  report 10 touches at a time.
 
           If unsure, say N.
 
-source "drivers/input/touchscreen/hxchipset/Kconfig"
+source "drivers/input/touchscreen/himax_mmi/Kconfig"
+
+config TOUCHSCREEN_NOVATEK_CHIPSET
+        bool "Novatek touchpanel Novatek series"
+        depends on I2C
+        help
+          Say Y here if you have a Novatek NT36525  touchscreen.
+          Novatek controllers are multi touch controllers which can
+          report 10 touches at a time.
+
+          If unsure, say N.
+
+source "drivers/input/touchscreen/nova_mmi/Kconfig"
 
 config TOUCHSCREEN_EKTF3XXX_CHIPSET
 	bool "Elan EKTF3XXX touchpanel CHIPSET"

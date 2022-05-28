@@ -157,7 +157,7 @@
 	};
 
 	et320: et320{
-		compatible = "egistec,et320";
+		compatible = "egistec,et516";
 		status = "/chosen", "mmi,fps", "true";
 		interrupt-parent = <&tlmm>;
 		interrupts = <128 0x0>;

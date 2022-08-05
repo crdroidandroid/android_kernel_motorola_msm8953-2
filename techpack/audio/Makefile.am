@@ -15,6 +15,9 @@ endif
 ifeq ($(TARGET_SUPPORT),apq8009)
 KBUILD_OPTIONS += CONFIG_ARCH_MSM8909=y
 endif
+ifeq ($(TARGET_SUPPORT),msm8917)
+KBUILD_OPTIONS += CONFIG_ARCH_MSM8937=y
+endif
 ifeq ($(TARGET_SUPPORT),msm8937)
 KBUILD_OPTIONS += CONFIG_ARCH_MSM8937=y
 endif
@@ -28,7 +31,7 @@ obj-m += asoc/codecs/
 ifeq ($(TARGET_SUPPORT), $(filter $(TARGET_SUPPORT), sdm670 qcs605))
 obj-m += asoc/codecs/wcd934x/
 endif
-ifeq ($(TARGET_SUPPORT), $(filter $(TARGET_SUPPORT), apq8053 sdm670 qcs605 apq8009 msm8937))
+ifeq ($(TARGET_SUPPORT), $(filter $(TARGET_SUPPORT), apq8053 sdm670 qcs605 apq8009 msm8917 msm8937))
 obj-m += asoc/codecs/sdm660_cdc/
 endif
 ifeq ($(TARGET_SUPPORT), $(filter $(TARGET_SUPPORT), sdm670 qcs605))

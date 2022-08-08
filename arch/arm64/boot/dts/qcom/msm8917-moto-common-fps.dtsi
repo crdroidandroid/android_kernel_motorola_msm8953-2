@@ -12,7 +12,7 @@
 #include "msm8917-moto-fps-pinctrl.dtsi"
 &soc{
 	et320: et320{
-		compatible = "egistec,et320";
+		compatible = "egistec,et516";
 		status = "ok";
 		interrupt-parent = <&tlmm>;
 		interrupts = <48 0x0>;

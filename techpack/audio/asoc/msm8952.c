@@ -1813,6 +1813,14 @@ static int cs35l35_dai_init(struct snd_soc_pcm_runtime *rtd)
 }
 #endif
 
+#ifdef CONFIG_SND_SOC_TAS2560
+static int tas2560_dai_init(struct snd_soc_pcm_runtime *rtd)
+{
+	int ret = 0;
+	ret = tas2560_algo_routing_init(rtd);
+	return ret;
+}
+#endif
 struct snd_soc_dai_link_component dlc_rx1[] = {
 	{
 		.of_node = NULL,
@@ -1867,6 +1875,39 @@ static struct snd_soc_dai_link msm8952_dai[] = {
 		.ignore_pmdown_time = 1,
 		.id = MSM_FRONTEND_DAI_MULTIMEDIA1
 	},
+#if defined(CONFIG_SND_SOC_TAS2560)
+	{ /* hw:x, 41 */
+		.name = "QUIN_MI2S_TX Hostless",
+		.stream_name = "Quinary MI2S_TX Hostless Capture",
+		.cpu_dai_name = "QUIN_MI2S_TX_HOSTLESS",
+		.platform_name = "msm-pcm-hostless",
+		.dynamic = 1,
+		.dpcm_capture = 1,
+		.trigger = {SND_SOC_DPCM_TRIGGER_POST,
+			SND_SOC_DPCM_TRIGGER_POST},
+		.no_host_mode = SND_SOC_DAI_LINK_NO_HOST,
+		.ignore_suspend = 1,
+		.ignore_pmdown_time = 1,
+		.codec_dai_name = "snd-soc-dummy-dai",
+		.codec_name = "snd-soc-dummy",
+	},
+	{ /* hw:x, 42 */
+		.name = "Quinary MI2S_RX Hostless",
+		.stream_name = "QUIN_MI2S Hostless",
+		.cpu_dai_name = "QUIN_MI2S_RX_HOSTLESS",
+		.platform_name = "msm-pcm-hostless",
+		.dynamic = 1,
+		.dpcm_playback = 1,
+		.trigger = {SND_SOC_DPCM_TRIGGER_POST,
+				SND_SOC_DPCM_TRIGGER_POST},
+		.no_host_mode = SND_SOC_DAI_LINK_NO_HOST,
+		.ignore_suspend = 1,
+		/* this dainlink has playback support */
+		.ignore_pmdown_time = 1,
+		.codec_dai_name = "snd-soc-dummy-dai",
+		.codec_name = "snd-soc-dummy",
+	},
+#endif
 	{/* hw:x,1 */
 		.name = "MSM8952 Media2",
 		.stream_name = "MultiMedia2",
@@ -2771,6 +2812,23 @@ static struct snd_soc_dai_link msm8952_dai[] = {
 		.be_hw_params_fixup = msm_be_hw_params_fixup,
 		.ignore_suspend = 1,
 	},
+#if defined(CONFIG_SND_SOC_TAS2560)
+        {
+                .name = LPASS_BE_QUIN_MI2S_TX,
+                .stream_name = "Quinary MI2S Capture",
+                .cpu_dai_name = "msm-dai-q6-mi2s.5",
+                .platform_name = "msm-pcm-routing",
+                .codec_dai_name = "tas2560 ASI1",
+                .codec_name = "tas2560.2-004c",
+                .init = &tas2560_dai_init,
+                .no_pcm = 1,
+                .dpcm_capture = 1,
+                .be_id = MSM_BACKEND_DAI_QUINARY_MI2S_TX,
+                .be_hw_params_fixup = msm_be_hw_params_fixup,
+                .ops = &msm8952_quin_mi2s_be_ops,
+                .ignore_suspend = 1,
+        },
+#endif
 	/* Incall Music 2 BACK END DAI Link */
 	{
 		.name = LPASS_BE_VOICE2_PLAYBACK_TX,
@@ -2850,6 +2908,24 @@ static struct snd_soc_dai_link msm8952_hdmi_dba_dai_link[] = {
 		.ignore_suspend = 1,
 	},
 };
+#if defined(CONFIG_SND_SOC_TAS2560)
+	{
+		.name = LPASS_BE_QUIN_MI2S_RX,
+		.stream_name = "Quinary MI2S Playback",
+		.cpu_dai_name = "msm-dai-q6-mi2s.5",
+		.platform_name = "msm-pcm-routing",
+		.codec_dai_name = "tas2560 ASI1",
+		.codec_name = "tas2560.2-004c",
+		.no_pcm = 1,
+		.dpcm_playback = 1,
+		.be_id = MSM_BACKEND_DAI_QUINARY_MI2S_RX,
+		.be_hw_params_fixup = msm_mi2s_rx_be_hw_params_fixup,
+		.ops = &msm8952_quin_mi2s_be_ops,
+		.ignore_pmdown_time = 1, /* dai link has playback support */
+		.ignore_suspend = 1,
+	},
+#endif
+
 static struct snd_soc_dai_link msm8952_quin_dai_link[] = {
 #if defined(CONFIG_SND_SOC_CS35L35) && !defined(CONFIG_SND_CS35L35_QUAT_I2S)
 	{

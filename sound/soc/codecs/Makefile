@@ -451,3 +451,14 @@ obj-$(CONFIG_SND_SOC_MAX98504)	+= snd-soc-max98504.o
 obj-$(CONFIG_SND_SOC_TPA6130A2)	+= snd-soc-tpa6130a2.o
 obj-$(CONFIG_SND_SOC_AW8896)	+= snd-soc-aw8896.o
 obj-$(CONFIG_SND_SOC_TFA98XX)	+= snd-soc-tfa98xx.o
+
+# for tas2560 dsp algo controls
+obj-$(CONFIG_SND_SOC_TAS2560) += tas2560-algo.o
+
+ifeq ($(CONFIG_SND_SOC_TAS2560), y)
+
+EXTRA_CFLAGS += -Itechpack/audio/include
+EXTRA_CFLAGS += -Itechpack/audio/include/uapi
+EXTRA_CFLAGS += -Iinclude/sound
+
+endif

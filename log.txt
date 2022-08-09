@@ -1,1 +1,0 @@
-CONFLICT (modify/delete): sound/soc/codecs/Android.mk deleted in HEAD and modified in fea4f9ddcc56... ASoC: Tas2560: Add codec algo.. Version fea4f9ddcc56... ASoC: Tas2560: Add codec algo. of sound/soc/codecs/Android.mk left in tree.

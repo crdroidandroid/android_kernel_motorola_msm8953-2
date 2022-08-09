@@ -683,6 +683,7 @@ dtb-$(CONFIG_CEDRIC_DTB) += \
 
 dtb-$(CONFIG_HANNAH_DTB) += \
 	msm8917-hannah-p0.dtb
+        msm8940-hannah-p0.dtb
 
 dtb-$(CONFIG_MONTANA_DTB) += \
 	msm8937-montana-p0.dtb \

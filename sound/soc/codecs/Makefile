@@ -459,6 +459,5 @@ ifeq ($(CONFIG_SND_SOC_TAS2560), y)
 
 EXTRA_CFLAGS += -Itechpack/audio/include
 EXTRA_CFLAGS += -Itechpack/audio/include/uapi
-EXTRA_CFLAGS += -Iinclude/sound
 
 endif

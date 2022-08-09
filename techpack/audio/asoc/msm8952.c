@@ -2823,7 +2823,7 @@ static struct snd_soc_dai_link msm8952_dai[] = {
                 .init = &tas2560_dai_init,
                 .no_pcm = 1,
                 .dpcm_capture = 1,
-                .be_id = MSM_BACKEND_DAI_QUINARY_MI2S_TX,
+                .id = MSM_BACKEND_DAI_QUINARY_MI2S_TX,
                 .be_hw_params_fixup = msm_be_hw_params_fixup,
                 .ops = &msm8952_quin_mi2s_be_ops,
                 .ignore_suspend = 1,
@@ -2908,23 +2908,6 @@ static struct snd_soc_dai_link msm8952_hdmi_dba_dai_link[] = {
 		.ignore_suspend = 1,
 	},
 };
-#if defined(CONFIG_SND_SOC_TAS2560)
-	{
-		.name = LPASS_BE_QUIN_MI2S_RX,
-		.stream_name = "Quinary MI2S Playback",
-		.cpu_dai_name = "msm-dai-q6-mi2s.5",
-		.platform_name = "msm-pcm-routing",
-		.codec_dai_name = "tas2560 ASI1",
-		.codec_name = "tas2560.2-004c",
-		.no_pcm = 1,
-		.dpcm_playback = 1,
-		.be_id = MSM_BACKEND_DAI_QUINARY_MI2S_RX,
-		.be_hw_params_fixup = msm_mi2s_rx_be_hw_params_fixup,
-		.ops = &msm8952_quin_mi2s_be_ops,
-		.ignore_pmdown_time = 1, /* dai link has playback support */
-		.ignore_suspend = 1,
-	},
-#endif
 
 static struct snd_soc_dai_link msm8952_quin_dai_link[] = {
 #if defined(CONFIG_SND_SOC_CS35L35) && !defined(CONFIG_SND_CS35L35_QUAT_I2S)
@@ -2950,6 +2933,22 @@ static struct snd_soc_dai_link msm8952_quin_dai_link[] = {
 		.ignore_pmdown_time = 1, /* dai link has playback support */
 		.ignore_suspend = 1,
 	},
+#elif defined(CONFIG_SND_SOC_TAS2560)
+        {
+                .name = LPASS_BE_QUIN_MI2S_RX,
+                .stream_name = "Quinary MI2S Playback",
+                .cpu_dai_name = "msm-dai-q6-mi2s.5",
+                .platform_name = "msm-pcm-routing",
+                .codec_dai_name = "tas2560 ASI1",
+                .codec_name = "tas2560.2-004c",
+                .no_pcm = 1,
+                .dpcm_playback = 1,
+                .id = MSM_BACKEND_DAI_QUINARY_MI2S_RX,
+                .be_hw_params_fixup = msm_mi2s_rx_be_hw_params_fixup,
+                .ops = &msm8952_quin_mi2s_be_ops,
+                .ignore_pmdown_time = 1, /* dai link has playback support */
+                .ignore_suspend = 1,
+        },
 #else
 	{
 		.name = LPASS_BE_QUIN_MI2S_RX,

@@ -126,11 +126,11 @@
 	    /delete-property/ qcom,msm-vdd-wsa-switch-current;
 	    /delete-property/ qcom,hdmi-dba-codec-rx;
 	    /delete-property/ qcom,cdc-us-euro-gpios;
-
-		  lpa: qcom,msm-pcm-lpa {
-		    compatible = "qcom,msm-pcm-lpa";
-		  };
 	  };
+
+        lpa: qcom,msm-pcm-lpa {
+        compatible = "qcom,msm-pcm-lpa";
+        };
 
 	/delete-node/ et320;
 	/delete-node/ fp_id;

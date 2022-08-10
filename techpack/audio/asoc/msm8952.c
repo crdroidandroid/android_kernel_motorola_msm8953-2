@@ -2816,7 +2816,7 @@ static struct snd_soc_dai_link msm8952_dai[] = {
         {
                 .name = LPASS_BE_QUIN_MI2S_TX,
                 .stream_name = "Quinary MI2S Capture",
-                .cpu_dai_name = "msm-dai-q6-mi2s.5",
+                .cpu_dai_name = "msm-dai-q6-mi2s.4",
                 .platform_name = "msm-pcm-routing",
                 .codec_dai_name = "tas2560 ASI1",
                 .codec_name = "tas2560.2-004c",
@@ -2937,7 +2937,7 @@ static struct snd_soc_dai_link msm8952_quin_dai_link[] = {
         {
                 .name = LPASS_BE_QUIN_MI2S_RX,
                 .stream_name = "Quinary MI2S Playback",
-                .cpu_dai_name = "msm-dai-q6-mi2s.5",
+                .cpu_dai_name = "msm-dai-q6-mi2s.4",
                 .platform_name = "msm-pcm-routing",
                 .codec_dai_name = "tas2560 ASI1",
                 .codec_name = "tas2560.2-004c",

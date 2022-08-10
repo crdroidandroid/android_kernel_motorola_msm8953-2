@@ -290,6 +290,7 @@
 		status = "ok";
 
 		novatek,reset-gpio = <&tlmm 64 0x00>;
+		novatek,usb_charger;
 		novatek,irq-gpio = <&tlmm 65 0x00>;
 	};
 
